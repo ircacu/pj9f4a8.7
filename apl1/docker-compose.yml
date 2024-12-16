@@ -1,0 +1,25 @@
+services:
+ sStarship:
+  image: httpd:latest
+  volumes:
+   - ./codi/starship-sorades-13k:/usr/local/apache2/htdocs
+  environment:
+   - HOST_NAME=pj9f4a87-grup01.fjeclot.net
+  networks:
+   - xPj9f4a87
+
+ nginx:
+  image: nginx:latest
+  container_name: cNginx
+  ports:
+   - "80:80"
+  volumes:
+   - ./nginx.conf:/etc/nginx/nginx.conf
+  depends_on:
+   - sStarship
+  networks:
+   - xPj9f4a87
+
+networks:
+ xPj9f4a87:
+  driver: bridge 
